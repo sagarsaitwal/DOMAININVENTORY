@@ -29,6 +29,37 @@ Excel writer) and one builder per provider.
   optionally Billing Read for purchased services) and/or a GoDaddy API
   key/secret (with domain read access)
 
+### Getting a Cloudflare API token
+
+1. Log in to the [Cloudflare dashboard](https://dash.cloudflare.com/) →
+   **My Profile → API Tokens → Create Token**.
+2. Choose **Create Custom Token** and grant these permissions (read-only —
+   the tool never writes):
+   - `Zone → Zone → Read`
+   - `Zone → DNS → Read`
+   - `Zone → SSL and Certificates → Read`
+   - `Account → Billing → Read` *(optional — only needed for the Purchased
+     Services sheet; omit it and that sheet will just be empty)*
+3. Under **Zone Resources**, scope it to "All zones" (or specific zones/accounts
+   you want inventoried), then **Continue to summary → Create Token**.
+4. Copy the token immediately — Cloudflare shows it once — and put it in
+   `.env` as `CLOUDFLARE_API_TOKEN`.
+
+### Getting a GoDaddy API key/secret
+
+1. Log in to the [GoDaddy Developer Portal](https://developer.godaddy.com/)
+   with the same account that owns the domains.
+2. Go to **API Keys → Create New API Key**.
+3. Choose environment:
+   - **Production** — real account data, use `GODADDY_API_BASE_URL=https://api.godaddy.com`.
+   - **OTE (test/sandbox)** — fake test data only, use `GODADDY_API_BASE_URL=https://api.ote-godaddy.com`.
+4. Name the key, create it, then copy the **Key** and **Secret** shown — the
+   secret is also shown only once. Put them in `.env` as `GODADDY_API_KEY`
+   and `GODADDY_API_SECRET`.
+5. GoDaddy's Domains API requires the account to have an active/eligible
+   domain portfolio; API access can take a short activation period on new
+   developer accounts.
+
 ## Setup
 
 ```bash
@@ -61,6 +92,26 @@ Produces a single timestamped workbook in `output/`, e.g.
 
 Logs are written to `logs/inventory.log` (also git-ignored).
 
+## What gets collected per provider
+
+**Cloudflare** (zone/DNS-hosting side): every zone on the account, its plan
+and status, full DNS record set (name, type, content, TTL, proxy status,
+comment), SSL/TLS mode, DNSSEC status, zone feature flags (Brotli, IPv6,
+HTTP/3, HSTS, etc.), SSL certificate packs with expiry, and — if Billing
+Read is granted — account subscriptions and their renewal dates. Registrar
+and domain expiry aren't exposed by Cloudflare's API, so they're enriched
+via a best-effort public RDAP lookup per domain.
+
+**GoDaddy** (registrar side): every domain in the account, its status,
+expiration date, auto-renew flag, privacy protection flag, domain lock
+flag, nameservers, and DNS records for domains using GoDaddy's own DNS
+hosting. Domain lookups run concurrently (`GODADDY_MAX_WORKERS`, default 2)
+so one slow domain doesn't stall the rest.
+
+Both feed into the same `DomainAsset` model (tagged by `source`) so the
+Domains, DNS Records, and Renewals sheets show every domain from either
+provider side by side.
+
 ## Project layout
 
 ```
@@ -92,3 +143,9 @@ pytest
 - Never commit `.env` — it holds live API credentials.
 - Renewal urgency bands, wording, and Excel colours are defined once in
   `renewal.py` and reused everywhere; change them there, not per-sheet.
+
+## Author
+
+**Sagar Saitwal**
+- LinkedIn: [www.linkedin.com/in/sagar-saitwal](https://www.linkedin.com/in/sagar-saitwal)
+- GitHub: [https://github.com/sagarsaitwal/DOMAININVENTORY.git](https://github.com/sagarsaitwal/DOMAININVENTORY.git)
