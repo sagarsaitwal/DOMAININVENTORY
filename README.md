@@ -25,9 +25,9 @@ Excel writer) and one builder per provider.
 ## Requirements
 
 - Python 3.12+
-- A Cloudflare API token (Zone Read, DNS Read, SSL/Certificates Read, and
-  optionally Billing Read for purchased services) and/or a GoDaddy API
-  key/secret (with domain read access)
+- A Cloudflare API token (Zone Read, Zone Settings Read, DNS Read,
+  SSL/Certificates Read, and optionally Billing Read for purchased services)
+  and/or a GoDaddy API key/secret (with domain read access)
 
 ### Getting a Cloudflare API token
 
@@ -36,6 +36,9 @@ Excel writer) and one builder per provider.
 2. Choose **Create Custom Token** and grant these permissions (read-only —
    the tool never writes):
    - `Zone → Zone → Read`
+   - `Zone → Zone Settings → Read` *(covers `/settings/ssl`, `/dnssec`, and
+     `/settings` — easy to miss, and the tool 403s without it even though
+     everything else authenticates fine)*
    - `Zone → DNS → Read`
    - `Zone → SSL and Certificates → Read`
    - `Account → Billing → Read` *(optional — only needed for the Purchased
