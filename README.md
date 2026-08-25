@@ -1,5 +1,7 @@
 # Domain Asset Inventory & Renewal Manager
 
+**Author:** Sagar Saitwal
+
 A read-only CLI tool that inventories domains, DNS records, SSL certificates,
 and renewal dates across **Cloudflare** and **GoDaddy**, and produces a single
 color-coded Excel report so nothing expires unnoticed.

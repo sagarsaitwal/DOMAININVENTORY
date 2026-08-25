@@ -1,4 +1,7 @@
-"""Renewal policy: the single source of truth for urgency bands, wording, and ordering."""
+"""Renewal policy: the single source of truth for urgency bands, wording, and ordering.
+
+Author: Sagar Saitwal
+"""
 
 from dataclasses import dataclass
 from datetime import date

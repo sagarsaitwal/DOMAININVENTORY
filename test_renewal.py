@@ -1,4 +1,7 @@
-"""Tests for renewal policy and the Renewals sheet."""
+"""Tests for renewal policy and the Renewals sheet.
+
+Author: Sagar Saitwal
+"""
 
 from datetime import date, timedelta
 

@@ -1,4 +1,7 @@
-"""Application entry point for Domain Asset Inventory & Renewal Manager."""
+"""Application entry point for Domain Asset Inventory & Renewal Manager.
+
+Author: Sagar Saitwal
+"""
 
 from __future__ import annotations
 

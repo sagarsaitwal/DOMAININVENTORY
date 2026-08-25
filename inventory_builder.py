@@ -1,4 +1,7 @@
-"""Orchestrates provider data into a unified, reportable inventory."""
+"""Orchestrates provider data into a unified, reportable inventory.
+
+Author: Sagar Saitwal
+"""
 
 import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed

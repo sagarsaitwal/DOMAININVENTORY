@@ -1,4 +1,7 @@
-"""Typed models shared by providers, inventory building, and reporting."""
+"""Typed models shared by providers, inventory building, and reporting.
+
+Author: Sagar Saitwal
+"""
 
 from dataclasses import dataclass, field
 from datetime import date

@@ -1,4 +1,7 @@
-"""Cloudflare implementation of the provider contract."""
+"""Cloudflare implementation of the provider contract.
+
+Author: Sagar Saitwal
+"""
 
 import logging
 

@@ -1,4 +1,7 @@
-"""Professional Excel workbook generation for combined inventory results."""
+"""Professional Excel workbook generation for combined inventory results.
+
+Author: Sagar Saitwal
+"""
 
 from collections import Counter
 from datetime import datetime

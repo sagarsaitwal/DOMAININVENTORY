@@ -1,4 +1,7 @@
-"""Resilient Cloudflare v4 API client."""
+"""Resilient Cloudflare v4 API client.
+
+Author: Sagar Saitwal
+"""
 
 import logging
 from typing import Any

@@ -1,4 +1,7 @@
-"""Logging setup."""
+"""Logging setup.
+
+Author: Sagar Saitwal
+"""
 
 import logging
 from pathlib import Path

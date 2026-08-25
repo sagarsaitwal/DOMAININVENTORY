@@ -1,4 +1,7 @@
-"""Environment-backed application configuration."""
+"""Environment-backed application configuration.
+
+Author: Sagar Saitwal
+"""
 
 from dataclasses import dataclass
 import os

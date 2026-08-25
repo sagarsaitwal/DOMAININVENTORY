@@ -1,4 +1,7 @@
-"""Resilient read-only client for GoDaddy Domains and DNS APIs."""
+"""Resilient read-only client for GoDaddy Domains and DNS APIs.
+
+Author: Sagar Saitwal
+"""
 
 import logging
 from datetime import datetime

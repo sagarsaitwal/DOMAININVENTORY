@@ -1,4 +1,7 @@
-"""Extensible provider contract for zone/DNS-hosting sources (e.g. Cloudflare)."""
+"""Extensible provider contract for zone/DNS-hosting sources (e.g. Cloudflare).
+
+Author: Sagar Saitwal
+"""
 
 from abc import ABC, abstractmethod
 

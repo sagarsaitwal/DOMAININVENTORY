@@ -1,4 +1,7 @@
-"""Best-effort RDAP lookup; failures never interrupt inventory generation."""
+"""Best-effort RDAP lookup; failures never interrupt inventory generation.
+
+Author: Sagar Saitwal
+"""
 
 import logging
 from datetime import date, datetime
